@@ -13,7 +13,7 @@
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
                 <!-- Add icons to the links using the .nav-icon class
                with font-awesome or any other icon font library -->
-               @canany(['create dashboard','edit dashboard','view dashboard','delete dashboard'])
+                @canany(['create dashboard','edit dashboard','view dashboard','delete dashboard'])
                 <li class="nav-item">
                     <a href="{{ route('admin.dashboard') }}" class="nav-link {{ Route::is('admin.dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-th"></i>
@@ -57,6 +57,69 @@
                 </li>
                 @endcanany
 
+                @canany(['create account','edit account','view account','delete account'])
+                <li class="nav-item">
+                    <a href="{{ route('admin.accounts.index') }}" class="nav-link {{ Route::is('admin.accounts.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-circle"></i>
+                        <p>
+                            Account
+                        </p>
+                    </a>
+                </li>
+                @endcanany
+
+
+                @canany(['create deposit','edit deposit','view deposit','delete deposit'])
+                <li class="nav-item">
+                    <a href="{{ route('admin.deposit.index') }}" class="nav-link {{ Route::is('admin.deposit.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-wallet"></i>
+                        <p>
+                            Deposit
+                        </p>
+                    </a>
+                </li>
+                @endcanany
+
+
+                @canany(['create sendmoney','edit sendmoney','view sendmoney','delete sendmoney'])
+                <li class="nav-item">
+                    <a href="{{ route('admin.send-money.index') }}" class="nav-link {{ Route::is('admin.send-money.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-paper-plane"></i>
+                        <p>
+                            Send Money
+                        </p>
+                    </a>
+                </li>
+                @endcanany
+
+
+                @canany(['create banktransfer','edit banktransfer','view banktransfer','delete banktransfer'])
+                <li class="nav-item">
+                    <a href="{{ route('admin.bank-transfer.index') }}" class="nav-link {{ Route::is('admin.bank-transfer.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-university"></i>
+                        <p>
+                            Bank Transfer
+                        </p>
+                    </a>
+                </li>
+                @endcanany
+
+
+                @canany(['create withdraw','edit withdraw','view withdraw','delete withdraw'])
+                <li class="nav-item">
+                    <a href="{{ route('admin.withdraw.index') }}" class="nav-link {{ Route::is('admin.withdraw.*') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-hand-holding-usd"></i>
+                        <p>
+                            Withdraw
+                        </p>
+                    </a>
+                </li>
+                @endcanany
+
+
+
+
+
                 @canany(['create setting','edit setting','view setting','delete setting'])
                 <li class="nav-item">
                     <a href="{{ route('admin.settings.index') }}" class="nav-link {{ Route::is('admin.settings.*') ? 'active' : '' }}">
@@ -67,6 +130,7 @@
                     </a>
                 </li>
                 @endcanany
+
 
             </ul>
 

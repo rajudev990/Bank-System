@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\SendMoney;
 use Illuminate\Http\Request;
 
 class SendMoneyController extends Controller
@@ -19,9 +20,10 @@ class SendMoneyController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+     public function index()
     {
-        //
+        $data = SendMoney::latest()->get();
+        return view('admin.send-money.index', compact('data'));
     }
 
     /**
@@ -29,7 +31,7 @@ class SendMoneyController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.send-money.create');
     }
 
     /**
@@ -37,7 +39,12 @@ class SendMoneyController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+
+        $data = $request->all();
+        SendMoney::create($data);
+        return redirect()->route('admin.send-money.index')->with('success', 'Data Store Successfully');
     }
 
     /**
@@ -53,7 +60,8 @@ class SendMoneyController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = SendMoney::findOrFail($id);
+        return view('admin.send-money.edit', compact('data'));
     }
 
     /**
@@ -61,7 +69,12 @@ class SendMoneyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $data = SendMoney::findOrFail($id);
+        $input = $request->all();
+
+        $data->update($input);
+        return redirect()->route('admin.send-money.index')->with('success', 'Data Update Successfully');
     }
 
     /**
@@ -69,6 +82,7 @@ class SendMoneyController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = SendMoney::findOrFail($id);
+        $data->delete();
     }
 }

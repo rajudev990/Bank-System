@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
 class WithdrawController extends Controller
@@ -19,9 +20,10 @@ class WithdrawController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+   public function index()
     {
-        //
+        $data = Withdraw::latest()->get();
+        return view('admin.withdraw.index', compact('data'));
     }
 
     /**
@@ -29,7 +31,7 @@ class WithdrawController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.withdraw.create');
     }
 
     /**
@@ -37,7 +39,12 @@ class WithdrawController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+
+        $data = $request->all();
+        Withdraw::create($data);
+        return redirect()->route('admin.withdraw.index')->with('success', 'Data Store Successfully');
     }
 
     /**
@@ -53,7 +60,8 @@ class WithdrawController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Withdraw::findOrFail($id);
+        return view('admin.withdraw.edit', compact('data'));
     }
 
     /**
@@ -61,7 +69,12 @@ class WithdrawController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $data = Withdraw::findOrFail($id);
+        $input = $request->all();
+
+        $data->update($input);
+        return redirect()->route('admin.withdraw.index')->with('success', 'Data Update Successfully');
     }
 
     /**
@@ -69,6 +82,7 @@ class WithdrawController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Withdraw::findOrFail($id);
+        $data->delete();
     }
 }

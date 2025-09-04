@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Deposit;
 use Illuminate\Http\Request;
 
 class DeporitController extends Controller
@@ -20,9 +21,10 @@ class DeporitController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+     public function index()
     {
-        //
+        $data = Deposit::latest()->get();
+        return view('admin.deposit.index', compact('data'));
     }
 
     /**
@@ -30,7 +32,7 @@ class DeporitController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.deposit.create');
     }
 
     /**
@@ -38,7 +40,12 @@ class DeporitController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+
+        $data = $request->all();
+        Deposit::create($data);
+        return redirect()->route('admin.deposit.index')->with('success', 'Data Store Successfully');
     }
 
     /**
@@ -54,7 +61,8 @@ class DeporitController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = Deposit::findOrFail($id);
+        return view('admin.deposit.edit', compact('data'));
     }
 
     /**
@@ -62,7 +70,12 @@ class DeporitController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $data = Deposit::findOrFail($id);
+        $input = $request->all();
+
+        $data->update($input);
+        return redirect()->route('admin.deposit.index')->with('success', 'Data Update Successfully');
     }
 
     /**
@@ -70,6 +83,7 @@ class DeporitController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = Deposit::findOrFail($id);
+        $data->delete();
     }
 }

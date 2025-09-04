@@ -1,11 +1,15 @@
 <?php
 
-
+use App\Http\Controllers\Admin\AccountController;
 use App\Http\Controllers\Admin\AdminProfileController;
 use App\Http\Controllers\Admin\Auth\LoginController;
+use App\Http\Controllers\Admin\BankTransferController;
+use App\Http\Controllers\Admin\DeporitController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\SendMoneyController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\WithdrawController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Artisan;
@@ -75,6 +79,21 @@ Route::prefix('admin')
         Route::resource('settings', SettingController::class);
         Route::resource('roles', RoleController::class);
         Route::resource('users', UserController::class);
+
+        //Account
+        Route::resource('accounts', AccountController::class,);
+        
+        //Deposit
+        Route::resource('deposit', DeporitController::class,);
+
+        //Sendmoney
+        Route::resource('send-money', SendMoneyController::class,);
+
+        //Bank  Transfer
+        Route::resource('bank-transfer', BankTransferController::class,);
+
+        //Withdraw
+        Route::resource('withdraw', WithdrawController::class,);
 
 
 

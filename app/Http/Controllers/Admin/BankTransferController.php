@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\BankTransfer;
 use Illuminate\Http\Request;
 
 class BankTransferController extends Controller
@@ -21,7 +22,8 @@ class BankTransferController extends Controller
      */
     public function index()
     {
-        //
+        $data = BankTransfer::latest()->get();
+        return view('admin.bank-tranfer.index', compact('data'));
     }
 
     /**
@@ -29,7 +31,7 @@ class BankTransferController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.bank-tranfer.create');
     }
 
     /**
@@ -37,7 +39,12 @@ class BankTransferController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+
+
+        $data = $request->all();
+        BankTransfer::create($data);
+        return redirect()->route('admin.bank-transfer.index')->with('success', 'Data Store Successfully');
     }
 
     /**
@@ -53,7 +60,8 @@ class BankTransferController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $data = BankTransfer::findOrFail($id);
+        return view('admin.bank-tranfer.edit', compact('data'));
     }
 
     /**
@@ -61,7 +69,12 @@ class BankTransferController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+        $data = BankTransfer::findOrFail($id);
+        $input = $request->all();
+
+        $data->update($input);
+        return redirect()->route('admin.bank-transfer.index')->with('success', 'Data Update Successfully');
     }
 
     /**
@@ -69,6 +82,7 @@ class BankTransferController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $data = BankTransfer::findOrFail($id);
+        $data->delete();
     }
 }
