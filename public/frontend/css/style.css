@@ -1,0 +1,761 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #000;
+}
+
+.logo {
+  max-width: 150px;
+}
+
+.menu-bar {
+  background: linear-gradient(0deg, #000, #454545) !important;
+}
+
+
+@media (max-width:575px) {
+  .top-bar {
+    display: none;
+  }
+}
+.navbar-toggler {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    border: none !important;
+    box-shadow: none !important;
+    outline: none !important;
+}
+
+/* Slider */
+.my-slider {
+  position: relative;
+}
+
+.my-slider img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Turn your icons into buttons (chassi style) */
+.fa-chevron-left,
+.fa-chevron-right {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  font-size: 18px;
+  color: white;
+  cursor: pointer;
+}
+
+/* Position */
+.fa-chevron-left {
+  left: 15px;
+}
+
+.fa-chevron-right {
+  right: 15px;
+}
+
+/* Dots inside bottom */
+.slick-dots {
+  position: absolute;
+  bottom: 0px;
+  width: 100%;
+  text-align: center;
+  z-index: 2;
+}
+
+.slick-dots li button:before {
+  color: white;
+  font-size: 12px;
+  opacity: 0.6;
+}
+
+.slick-dots li.slick-active button:before {
+  opacity: 1;
+}
+
+.my-slider {
+  margin-bottom: 0px !important;
+}
+
+/* Card */
+
+.aviator-card {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border-top-right-radius: 10px;
+  overflow: hidden;
+  color: #c7a14c;
+  /* box-shadow: 0 0 10px #000; */
+  box-shadow: 1px -1px 2px rgba(255, 215, 0, 0.6);
+}
+
+
+.aviator-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  z-index: 0;
+}
+
+.corner-star {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 100px;
+  background: #c7a14c;
+  clip-path: polygon(100% 0, 0 0, 100% 100%);
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 10px;
+  z-index: 2;
+}
+
+.corner-star i {
+  font-size: 30px;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.corner-star i.active {
+  color: #fff;
+  transform: scale(1.2);
+}
+
+
+@media (max-width:575px) {
+  .aviator-card {
+    height: 100px;
+  }
+
+  .corner-star {
+    width: 50px;
+    height: 50px;
+    padding: 6px;
+  }
+
+  .corner-star i {
+    font-size: 13px;
+  }
+}
+
+
+/* Portfolio */
+.portfolio-filter {
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none;
+  /* Firefox scrollbar hide */
+  -ms-overflow-style: none;
+  /* IE scrollbar hide */
+  padding: 8px 0;
+}
+
+.portfolio-filter::-webkit-scrollbar {
+  display: none;
+  /* Chrome/Safari scrollbar hide */
+}
+
+.portfolio-filter .filter-btn {
+  width: 45px;
+  height: 45px;
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.portfolio-filter .filter-btn img {
+  width: 25px;
+  height: 25px;
+  object-fit: contain;
+}
+
+.portfolio-filter .filter-btn:hover {
+  background-color: #e9ecef;
+}
+
+.portfolio-filter .filter-btn.active {
+  background-color: #007BFF;
+  border-color: #0056b3;
+}
+
+
+.portfolio-gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+}
+
+/* .portfolio-item {
+    background-color: #000;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+} */
+
+/* .portfolio-item:hover {
+  transform: scale(1.03);
+} */
+
+.portfolio-item img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.hidden {
+  display: none !important;
+}
+
+@media (max-width:576px) {
+  .category {
+    display: none !important;
+  }
+}
+
+/* Search */
+.search-input-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 520px;
+}
+
+/* rounded input with gradient border effect */
+.search-input {
+  border-radius: 999px;
+  padding-left: 1.25rem;
+  padding-right: 3.5rem;
+  height: 37px;
+  border: 2px solid transparent;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+}
+
+.search-input:focus {
+  border-radius: 999px;
+  padding-left: 1.25rem;
+  padding-right: 3.5rem;
+  height: 37px;
+  border: 2px solid transparent;
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  border-color: #FFF !important;
+}
+
+#searchForm {
+  position: relative;
+}
+
+/* search icon inside */
+.search-btn-inside {
+  position: absolute;
+  right: 48px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: none;
+  background: transparent;
+  height: 38px;
+  width: 38px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #6c757d;
+  transition: transform 0.2s ease, color 0.2s ease;
+
+  position: absolute;
+  right: 0px;
+  background: #c9ccc9;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+}
+
+.wishlist img {
+  width: 40px;
+}
+
+/* small screen adjustments */
+@media (max-width: 480px) {
+  .search-input-wrap {
+    max-width: 360px;
+  }
+
+  .search-btn-inside {
+    right: 0px;
+  }
+}
+
+
+/*  */
+.category-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+}
+
+.category-list {
+  flex: 1;
+  overflow-y: auto;
+  /*max-height: 500px;*/
+  padding: 5px;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+
+}
+
+.category-list::-webkit-scrollbar {
+  display: none;
+}
+
+
+.filter-btn img {
+  max-width: 100%;
+  border: 2px solid transparent;
+  border-radius: 8px;
+  transition: border 0.2s;
+}
+
+.filter-btn.active img,
+.filter-btn:hover img {
+  border-color: #0d6efd;
+}
+
+/* .scroll-btn {
+  background: #f8f9fa;
+  border: 1px solid #ddd;
+  border-radius: 50%;
+  width: 28px;
+  height: 28px;
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.scroll-btn:hover {
+  background: #e9ecef;
+} */
+
+@media (max-width: 768px) {
+  .col-2 {
+    flex: 0 0 80px;
+    /* smaller width on mobile */
+    max-width: 80px;
+  }
+
+  /*.category-list {*/
+  /*  max-height: 900px;*/
+  /*}*/
+}
+
+.catlist {
+  background: #212529;
+  padding: 8px 1px;
+  text-align: center;
+  width: 80%;
+  margin: auto;
+  overflow-y: auto;
+}
+
+
+
+/* Optional scrollbar styling */
+.catlist::-webkit-scrollbar {
+  width: 0px;
+}
+
+
+.games_box::-webkit-scrollbar {
+  width: 0px;
+}
+
+/*.catlist::-webkit-scrollbar-thumb {*/
+/*    background-color: #c7a14c;*/
+/*    border-radius: 10px;*/
+/*}*/
+
+.category-mobile-box.fixed {
+  position: fixed;
+  top: 110px;
+  /* যেখান থেকে fixed হবে */
+  z-index: 999;
+}
+
+.card-desc a {
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.custom-card:hover {
+  box-shadow: 0px 0px 7px 3px #FFF;
+}
+
+.custom-card {
+  transition: transform 0.3s ease-in-out;
+}
+
+.custom-card:hover {
+  transform: scale(1.03) !important;
+  z-index: 2 !important; /* hover করলে উপরে আসবে */
+}
+
+/* .portfolio-item:hover {
+  box-shadow: 0 14px 25px rgba(184, 134, 11, 0.7);
+} */
+
+/*  */
+/* Shake Animation */
+@keyframes shake {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  10% {
+    transform: rotate(-10deg);
+  }
+
+  20% {
+    transform: rotate(10deg);
+  }
+
+  30% {
+    transform: rotate(-10deg);
+  }
+
+  40% {
+    transform: rotate(10deg);
+  }
+
+  50% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+/* Class for gift icon */
+.shake-animation {
+  display: inline-block;
+  animation: shake 0.5s ease-in-out infinite;
+  animation-delay: 3s;
+  /* প্রতি ৩ সেকেন্ড পরপর */
+  animation-iteration-count: infinite;
+}
+
+/*--------------------------------------------------------------
+# Scroll Top Button
+--------------------------------------------------------------*/
+.scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: #26a1df;
+  /* Telegram blue */
+  color: #fff;
+  border-radius: 50%;
+  font-size: 45px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  z-index: 9999;
+  border: none;
+  /* border remove */
+  outline: none;
+  /* outline remove */
+  text-decoration: none;
+  /* underline remove */
+}
+
+.scroll-top:hover {
+  background: #007ab8;
+  transform: scale(1.1);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.35);
+}
+
+.scroll-top i {
+  line-height: 1;
+  border: none;
+  /* icon এর চারপাশের border remove */
+  outline: none;
+}
+
+.scroll-top:focus,
+.scroll-top i:focus {
+  outline: none;
+  /* click করলে border remove */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+
+  50% {
+    transform: scale(1.15);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.scroll-top {
+  animation: pulse 2s infinite;
+}
+
+
+/*  */
+.cookie-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: #2c2c2c;
+  color: #fff;
+  text-align: center;
+  padding: 8px 8px;
+  font-size: 15px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 99999;
+  box-shadow: 0 -3px 10px rgba(0, 0, 0, 0.2);
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+}
+
+.cookie-footer p {
+  margin: 0;
+}
+
+.cookie-footer a {
+  color: #4da3ff;
+  text-decoration: underline;
+}
+
+.cookie-buttons button {
+  margin-left: 10px;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.cookie-buttons button#acceptCookies {
+  background: #4caf50;
+  color: #fff;
+}
+
+.cookie-buttons button#acceptCookies:hover {
+  background: #43a047;
+}
+
+.cookie-buttons button#declineCookies {
+  background: #f44336;
+  color: #fff;
+}
+
+.cookie-buttons button#declineCookies:hover {
+  background: #d32f2f;
+}
+
+
+/*  */
+.custom-card {
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    color: #fff;
+    /* margin-right: 5px; */
+    border-radius: 12px;
+    /* background: #424242; */
+}
+
+/* top-right yellow corner */
+.custom-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40%;
+  height: 60%;
+  background: #FFF;
+  clip-path: polygon(100% 0, 0 0, 200% 100%);
+  z-index: 3;
+}
+
+/* star icon */
+.star-icon {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  font-size: 12px;
+  color: black;
+  z-index: 3;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.star-icon.active {
+  color: #e7b649;
+}
+
+/* card content */
+.custom-card img {
+  position: relative;
+  z-index: 0;
+  max-width: 100%;
+  border-radius: 12px;
+  border: 2px solid #FFF;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px !important;
+  z-index: 2;
+}
+
+
+
+.custom-line {
+  width: 70%;
+  height: 10px;
+  border-radius: 5px;
+  background: #f4b400;
+  margin: 12px auto 6px;
+  position: relative;
+  z-index: 3;
+}
+
+.custom-small-line {
+  width: 40%;
+  height: 8px;
+  border-radius: 4px;
+  background: #f4b400;
+  margin: 6px auto;
+  position: relative;
+  z-index: 3;
+}
+
+/**/
+.offer-image {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 50%;
+  margin: 15px auto;
+  display: block;
+  background: #fff;
+}
+
+.promo-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  margin: 15px 0;
+}
+
+.promo-code {
+  background: #444;
+  color: #fff;
+  padding: 6px 14px;
+  border-radius: 4px;
+  margin-left: 6px;
+  margin-right: 8px;
+}
+
+.copy-icon {
+  cursor: pointer;
+  color: #000;
+  font-size: 20px;
+}
+
+.btn-green {
+  background: #28a745;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px;
+}
+
+.btn-gray {
+  background: #ccc;
+  color: #000;
+  font-weight: bold;
+  font-size: 16px;
+  padding: 12px;
+}
+
+.small-text {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+/* 🔵 Top Header Bar */
+.modal-topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  padding: 0 0px;
+  position: relative;
+}
+
+.badge-offer {
+  background: #007bff;
+  color: #fff;
+  font-size: 14px;
+  font-weight: 500;
+  padding: 10px 10px;
+  border-bottom-right-radius: 15px;
+}
+
+.close-btn {
+  cursor: pointer;
+  font-size: 25px;
+  font-weight: bold;
+  position: absolute;
+  right: 15px;
+  top: 0px;
+
+}
+
+.modal-content {
+  position: relative;
+  overflow: visible;
+}
+
+.offcanvas-start {
+    width: 300px;
+}
