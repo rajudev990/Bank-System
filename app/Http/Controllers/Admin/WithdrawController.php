@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\User;
 use App\Models\Withdraw;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,8 @@ class WithdrawController extends Controller
      */
     public function create()
     {
-        return view('admin.withdraw.create');
+         $user=User::where('status',1)->get();
+        return view('admin.withdraw.create',compact('user'));
     }
 
     /**
@@ -61,7 +63,8 @@ class WithdrawController extends Controller
     public function edit(string $id)
     {
         $data = Withdraw::findOrFail($id);
-        return view('admin.withdraw.edit', compact('data'));
+         $user=User::where('status',1)->get();
+        return view('admin.withdraw.edit', compact('data','user'));
     }
 
     /**
@@ -84,5 +87,6 @@ class WithdrawController extends Controller
     {
         $data = Withdraw::findOrFail($id);
         $data->delete();
+         return redirect()->back()->with('success', 'Data Delete Successfully');
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Deposit;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class DeporitController extends Controller
@@ -32,7 +33,8 @@ class DeporitController extends Controller
      */
     public function create()
     {
-        return view('admin.deposit.create');
+        $user=User::where('status',1)->get();
+        return view('admin.deposit.create',compact('user'));
     }
 
     /**
@@ -62,7 +64,8 @@ class DeporitController extends Controller
     public function edit(string $id)
     {
         $data = Deposit::findOrFail($id);
-        return view('admin.deposit.edit', compact('data'));
+        $user=User::where('status',1)->get();
+        return view('admin.deposit.edit', compact('data','user'));
     }
 
     /**
@@ -85,5 +88,6 @@ class DeporitController extends Controller
     {
         $data = Deposit::findOrFail($id);
         $data->delete();
+        return redirect()->back()->with('success', 'Data Delete Successfully');
     }
 }

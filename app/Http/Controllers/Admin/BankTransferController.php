@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\BankTransfer;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class BankTransferController extends Controller
@@ -31,7 +32,8 @@ class BankTransferController extends Controller
      */
     public function create()
     {
-        return view('admin.bank-tranfer.create');
+        $user=User::where('status',1)->get();
+        return view('admin.bank-tranfer.create',compact('user'));
     }
 
     /**
@@ -61,7 +63,8 @@ class BankTransferController extends Controller
     public function edit(string $id)
     {
         $data = BankTransfer::findOrFail($id);
-        return view('admin.bank-tranfer.edit', compact('data'));
+        $user=User::where('status',1)->get();
+        return view('admin.bank-tranfer.edit', compact('data','user'));
     }
 
     /**
@@ -84,5 +87,6 @@ class BankTransferController extends Controller
     {
         $data = BankTransfer::findOrFail($id);
         $data->delete();
+        return redirect()->back()->with('success', 'Data Delete Successfully');
     }
 }

@@ -7,6 +7,8 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Validation\Rule;
+
 
 class AccountController extends Controller
 {
@@ -44,14 +46,17 @@ class AccountController extends Controller
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|phone|unique:users,phone',
-            'password' => 'required|min:6|confirmed',
+            'phone'    => 'required|regex:/^(01)[0-9]{9}$/|unique:users,phone',
+            'password' => 'required|min:6|',
+            'account_no' => 'required|',
         ]);
 
 
         $image = $request->hasFile('image') ? ImageHelper::uploadImage($request->file('image')) : '';
 
         $data = $request->all();
+
+        $data['email'] = $request->phone . "@gmail.com";
 
         if ($image) {
             $data['image'] = $image;
@@ -82,15 +87,21 @@ class AccountController extends Controller
      */
     public function update(Request $request, string $id)
     {
+        $data = User::findOrFail($id);
 
         $request->validate([
             'name' => 'required|string|max:255',
-            'phone' => 'required|phone|unique:phone',
-            'password' => 'required|min:6|confirmed',
+            'phone' => [
+                'required',
+                'regex:/^(01)[0-9]{9}$/',
+                Rule::unique('users', 'phone')->ignore($data->id),
+            ],
+
+            'account_no' => 'required|',
         ]);
 
 
-        $data = User::findOrFail($id);
+
         $image = $request->hasFile('image') ? ImageHelper::uploadImage($request->file('image')) : '';
 
         if ($request->hasFile('image') && $data->image) {
@@ -98,6 +109,9 @@ class AccountController extends Controller
         }
 
         $input = $request->all();
+
+        $input['email'] = $request->phone . "@gmail.com";
+
 
         if ($image) {
             $input['image'] = $image;
@@ -119,5 +133,6 @@ class AccountController extends Controller
         }
 
         $data->delete();
+        return redirect()->back()->with('success', 'Data Delete Successfully');
     }
 }

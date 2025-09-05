@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\SendMoney;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class SendMoneyController extends Controller
@@ -31,7 +32,8 @@ class SendMoneyController extends Controller
      */
     public function create()
     {
-        return view('admin.send-money.create');
+        $user= User::where('status',1)->get();
+        return view('admin.send-money.create',compact('user'));
     }
 
     /**
@@ -61,7 +63,8 @@ class SendMoneyController extends Controller
     public function edit(string $id)
     {
         $data = SendMoney::findOrFail($id);
-        return view('admin.send-money.edit', compact('data'));
+        $user= User::where('status',1)->get();
+        return view('admin.send-money.edit', compact('data','user'));
     }
 
     /**
@@ -84,5 +87,6 @@ class SendMoneyController extends Controller
     {
         $data = SendMoney::findOrFail($id);
         $data->delete();
+        return redirect()->back()->with('success', 'Data Delete Successfully');
     }
 }
