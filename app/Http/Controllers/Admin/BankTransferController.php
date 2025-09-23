@@ -89,4 +89,25 @@ class BankTransferController extends Controller
         $data->delete();
         return redirect()->back()->with('success', 'Data Delete Successfully');
     }
+
+    
+     public function updateStatus(Request $request)
+    {
+        $item = BankTransfer::findOrFail($request->id);
+        $item->status = $request->status;
+        $item->save();
+
+        // Check if the request is an AJAX request
+        if ($request->ajax()) {
+            return response()->json([
+                'status' => $item->status,
+                'message' => $item->status == 1
+                    ? 'Status has been activated successfully.'
+                    : 'Status has been deactivated successfully.'
+            ]);
+        }
+
+        // In case it's not an AJAX request, redirect with a success message
+        return back()->with('success', 'Status has been updated successfully.');
+    }
 }

@@ -42,9 +42,6 @@ class DeporitController extends Controller
      */
     public function store(Request $request)
     {
-
-
-
         $data = $request->all();
         Deposit::create($data);
         return redirect()->route('admin.deposit.index')->with('success', 'Data Store Successfully');
@@ -89,5 +86,27 @@ class DeporitController extends Controller
         $data = Deposit::findOrFail($id);
         $data->delete();
         return redirect()->back()->with('success', 'Data Delete Successfully');
+    }
+
+
+    
+     public function updateStatus(Request $request)
+    {
+        $item = Deposit::findOrFail($request->id);
+        $item->status = $request->status;
+        $item->save();
+
+        // Check if the request is an AJAX request
+        if ($request->ajax()) {
+            return response()->json([
+                'status' => $item->status,
+                'message' => $item->status == 1
+                    ? 'Status has been activated successfully.'
+                    : 'Status has been deactivated successfully.'
+            ]);
+        }
+
+        // In case it's not an AJAX request, redirect with a success message
+        return back()->with('success', 'Status has been updated successfully.');
     }
 }

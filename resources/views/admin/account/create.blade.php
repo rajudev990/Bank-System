@@ -56,7 +56,7 @@ Create Account
 
                             <div class="form-group col-lg-6">
                                 <label>Account Number <span class="text-danger">*</span></label>
-                                <input type="text" name="account_no" class="form-control @error('account_no') is-invalid @enderror"
+                                <input type="number" name="account_no" class="form-control @error('account_no') is-invalid @enderror"
                                     placeholder="Enter Account Number " required>
                                 @error('account_no')
                                 <span class="text-danger">{{ $message }}</span>

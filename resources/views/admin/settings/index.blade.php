@@ -29,7 +29,7 @@ Settings Update
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <label for="address">Address <span class="text-black-50">(Optional)</span></label>
+                                    <label for="address">Address<span class="text-black-50 btn-sm">(Optional)</span></label>
                                     <input value="{{$data->address}}" type="text" name="address" class="form-control @error('address') is-invalid @enderror" id="address" placeholder="Address">
                                     @error('address')
                                     <span class="text-danger">{{$message}}</span>
@@ -37,14 +37,14 @@ Settings Update
                                 </div>
 
                                 <div class="col-lg-6 form-group">
-                                    <label for="phone_one">Phone Number (one)</label>
+                                    <label for="phone_one">Phone Number<span class="text-black-50 btn-sm">(one)</span></label>
                                     <input required value="{{$data->phone_one}}" type="text" name="phone_one" class="form-control @error('phone_one') is-invalid @enderror" id="phone_one" placeholder="+880">
                                     @error('phone_one')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <label for="phone_two">Phone Number (two)</label>
+                                    <label for="phone_two">Phone Number<span class="text-black-50 btn-sm">(two)</span></label>
                                     <input value="{{$data->phone_two}}" type="text" name="phone_two" class="form-control @error('phone_two') is-invalid @enderror" id="phone_two" placeholder="+880">
                                     @error('phone_two')
                                     <span class="text-danger">{{$message}}</span>
@@ -53,14 +53,14 @@ Settings Update
 
 
                                 <div class="col-lg-6 form-group">
-                                    <label for="email_one">Email (one)</label>
+                                    <label for="email_one">Email<span class="text-black-50 btn-sm">(one)</span></label>
                                     <input required value="{{$data->email_one}}" type="text" name="email_one" class="form-control @error('email_one') is-invalid @enderror" id="email_one" placeholder="example@gmail.com">
                                     @error('email_one')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 form-group">
-                                    <label for="email_two">Email (two)</label>
+                                    <label for="email_two">Email<span class="text-black-50 btn-sm">(two)</span></label>
                                     <input value="{{$data->email_two}}" type="text" name="email_two" class="form-control @error('email_two') is-invalid @enderror" id="email_two" placeholder="example@gmail.com">
                                     @error('email_two')
                                     <span class="text-danger">{{$message}}</span>
@@ -77,7 +77,7 @@ Settings Update
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <label for="twitter">Messenger</label>
-                                    <input value="{{$data->twitter}}" type="text" name="twitter" class="form-control @error('twitter') is-invalid @enderror" id="twitter" placeholder="Messenger">
+                                    <input value="{{$data->twitter}}" type="text" name="twitter" class="form-control @error('twitter') is-invalid @enderror" id="twitter" placeholder="Messenger Link">
                                     @error('twitter')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
@@ -85,14 +85,14 @@ Settings Update
 
                                 <div class="col-lg-6 form-group">
                                     <label for="linkedin">Telegram</label>
-                                    <input value="{{$data->linkedin}}" type="text" name="linkedin" class="form-control @error('linkedin') is-invalid @enderror" id="linkedin" placeholder="Telegram">
+                                    <input value="{{$data->linkedin}}" type="text" name="linkedin" class="form-control @error('linkedin') is-invalid @enderror" id="linkedin" placeholder="Telegram Link">
                                     @error('linkedin')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="col-lg-6 form-group">
                                     <label for="youtube">WhatsApp</label>
-                                    <input value="{{$data->youtube}}" type="text" name="youtube" class="form-control @error('youtube') is-invalid @enderror" id="youtube" placeholder="WhatsApp">
+                                    <input value="{{$data->youtube}}" type="text" name="youtube" class="form-control @error('youtube') is-invalid @enderror" id="youtube" placeholder="WhatsApp Number">
                                     @error('youtube')
                                     <span class="text-danger">{{$message}}</span>
                                     @enderror

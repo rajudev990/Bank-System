@@ -7,7 +7,6 @@ use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rule;
 
 
 class AccountController extends Controller
@@ -47,8 +46,9 @@ class AccountController extends Controller
         $request->validate([
             'name' => 'required|string|max:255',
             'phone'    => 'required|regex:/^(01)[0-9]{9}$/|unique:users,phone',
+            'account_no' => 'required|unique:users,account_no',
+            'email' => 'required|unique:users,email',
             'password' => 'required|min:6|',
-            'account_no' => 'required|',
         ]);
 
 
@@ -89,17 +89,13 @@ class AccountController extends Controller
     {
         $data = User::findOrFail($id);
 
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'phone' => [
-                'required',
-                'regex:/^(01)[0-9]{9}$/',
-                Rule::unique('users', 'phone')->ignore($data->id),
-            ],
-
-            'account_no' => 'required|',
-        ]);
-
+          $request->validate([
+        'name' => 'required|string|max:255',
+        'phone' => 'required|regex:/^(01)[0-9]{9}$/|unique:users,phone,' . $data->id,
+        'account_no' => 'required|unique:users,account_no,' . $data->id,
+        'email' => 'required|unique:users,email,' . $data->id,
+        'password' => 'nullable|min:6',
+    ]);
 
 
         $image = $request->hasFile('image') ? ImageHelper::uploadImage($request->file('image')) : '';
@@ -134,5 +130,27 @@ class AccountController extends Controller
 
         $data->delete();
         return redirect()->back()->with('success', 'Data Delete Successfully');
+    }
+
+
+
+     public function updateStatus(Request $request)
+    {
+        $item = User::findOrFail($request->id);
+        $item->status = $request->status;
+        $item->save();
+
+        // Check if the request is an AJAX request
+        if ($request->ajax()) {
+            return response()->json([
+                'status' => $item->status,
+                'message' => $item->status == 1
+                    ? 'Status has been activated successfully.'
+                    : 'Status has been deactivated successfully.'
+            ]);
+        }
+
+        // In case it's not an AJAX request, redirect with a success message
+        return back()->with('success', 'Status has been updated successfully.');
     }
 }

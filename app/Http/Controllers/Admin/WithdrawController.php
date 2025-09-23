@@ -21,7 +21,7 @@ class WithdrawController extends Controller
     /**
      * Display a listing of the resource.
      */
-   public function index()
+    public function index()
     {
         $data = Withdraw::latest()->get();
         return view('admin.withdraw.index', compact('data'));
@@ -32,8 +32,8 @@ class WithdrawController extends Controller
      */
     public function create()
     {
-         $user=User::where('status',1)->get();
-        return view('admin.withdraw.create',compact('user'));
+        $user = User::where('status', 1)->get();
+        return view('admin.withdraw.create', compact('user'));
     }
 
     /**
@@ -63,8 +63,8 @@ class WithdrawController extends Controller
     public function edit(string $id)
     {
         $data = Withdraw::findOrFail($id);
-         $user=User::where('status',1)->get();
-        return view('admin.withdraw.edit', compact('data','user'));
+        $user = User::where('status', 1)->get();
+        return view('admin.withdraw.edit', compact('data', 'user'));
     }
 
     /**
@@ -87,6 +87,27 @@ class WithdrawController extends Controller
     {
         $data = Withdraw::findOrFail($id);
         $data->delete();
-         return redirect()->back()->with('success', 'Data Delete Successfully');
+        return redirect()->back()->with('success', 'Data Delete Successfully');
+    }
+
+
+    public function updateStatus(Request $request)
+    {
+        $item = Withdraw::findOrFail($request->id);
+        $item->status = $request->status;
+        $item->save();
+
+        // Check if the request is an AJAX request
+        if ($request->ajax()) {
+            return response()->json([
+                'status' => $item->status,
+                'message' => $item->status == 1
+                    ? 'Status has been activated successfully.'
+                    : 'Status has been deactivated successfully.'
+            ]);
+        }
+
+        // In case it's not an AJAX request, redirect with a success message
+        return back()->with('success', 'Status has been updated successfully.');
     }
 }

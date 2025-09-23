@@ -82,18 +82,24 @@ Route::prefix('admin')
 
         //Account
         Route::resource('accounts', AccountController::class,);
+        Route::post('accounts/status-update', [AccountController::class, 'updateStatus'])->name('accounts.status.update');
+
         
         //Deposit
         Route::resource('deposit', DeporitController::class,);
+        Route::post('deposit/status-update', [DeporitController::class, 'updateStatus'])->name('deposit.status.update');
 
         //Sendmoney
         Route::resource('send-money', SendMoneyController::class,);
+        Route::post('send-money/status-update', [SendMoneyController::class, 'updateStatus'])->name('send-money.status.update');
 
         //Bank  Transfer
         Route::resource('bank-transfer', BankTransferController::class,);
+        Route::post('bank-transfer/status-update', [BankTransferController::class, 'updateStatus'])->name('bank-transfer.status.update');
 
         //Withdraw
         Route::resource('withdraw', WithdrawController::class,);
+        Route::post('withdraw/status-update', [WithdrawController::class, 'updateStatus'])->name('withdraw.status.update');
 
 
 

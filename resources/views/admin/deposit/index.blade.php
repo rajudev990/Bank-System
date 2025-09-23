@@ -47,14 +47,16 @@ Deposit List
                                     <td>{{ $item->user?->name }}</td>
                                     <td>{{ $item->deposit_date }}</td>
                                     <td>{{ $item->amount }}</td>
-
                                     <td class="text-center">
-                                        @if($item->status==1)
-                                        <span class="badge btn-info">Active</span>
-                                        @else
-                                        <span class="badge btn-danger">Deactive</span>
-                                        @endif
+                                        <label class="switch">
+                                            <input type="checkbox"
+                                                class="status-toggle"
+                                                data-id="{{ $item->id }}"
+                                                {{ $item->status == 1 ? 'checked' : '' }}>
+                                            <span class="slider round"></span>
+                                        </label>
                                     </td>
+
                                     <td class="text-center">
                                         @can('edit deposit')
                                         <a href="{{ route('admin.deposit.edit', $item->id) }}" class="btn btn-sm btn-primary"><i class="fa fa-edit"></i></a>
@@ -88,4 +90,46 @@ Deposit List
     </div>
 </section>
 
+@endsection
+
+@section('script')
+<script>
+    $(document).ready(function() {
+
+        // Event delegation দিয়ে status toggle handle করা
+        $(document).on('change', '.status-toggle', function() {
+            let checkbox = $(this);
+            let id = checkbox.data('id');
+            let status = checkbox.is(':checked') ? 1 : 0;
+
+            $.ajax({
+                url: "{{ route('admin.deposit.status.update') }}",
+                method: "POST",
+                data: {
+                    _token: "{{ csrf_token() }}",
+                    id: id,
+                    status: status
+                },
+                success: function(res) {
+                    Swal.fire({
+                        icon: res.status == 1 ? 'success' : 'warning',
+                        title: res.status == 1 ? 'Status has been activated.' : 'Status has been deactivated.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                },
+                error: function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'There was a problem updating the status.',
+                        showConfirmButton: false,
+                        timer: 1500
+                    });
+                    checkbox.prop('checked', !status); // rollback
+                }
+            });
+        });
+
+    });
+</script>
 @endsection
